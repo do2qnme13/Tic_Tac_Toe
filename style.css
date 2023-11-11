@@ -1,18 +1,89 @@
-* {
+*,*::after,*::before {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-.gameBoard {
-  display: flex;
-  flex-wrap: wrap;
-  width: 1200px;
-  background-color: black;
+:root {
+  --borderColor: #204f4c;
+  --playerColor: #4eb3a5;
+  --gridBgColor: #f3faf9;
+  --crossColor: #0c2726;
+  --boxShadoq:#287971;
 }
-.grid {
-  width: 400px;
-  height: 400px;
+body {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+ font-family: Arial, Helvetica, sans-serif;
+
+}
+.gameBoard {
+  display: flex;
+  flex-wrap: wrap;
+  width: 302px;
+  height: 302px;
+  border: 1px solid var(--borderColor);
+  box-shadow: 0 0 10px var(--boxShadoq);
+}
+.grid {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--borderColor);
+  position: relative;
+  background-color: var(--gridBgColor);
+}
+
+.grid.cross::before,
+.grid.cross::after {
+  position: absolute;
+  content: ''; 
+  width: 15%;
+  height: 90%;
+  background-color: var(--crossColor);
+}
+
+.grid.cross::before {
+  transform: rotate(45deg);
+}
+.grid.cross::after {
+  transform: rotate(-45deg);
+}
+
+.grid.circle::before,
+.grid.circle::after {
+  position: absolute;
+  content: ''; 
+  border-radius: 90%;
+}
+
+.grid.circle::before {
+  width: 90%;
+  height: 90%;
+  background-color: var(--playerColor);
+}
+.grid.circle::after {
+  width: 70%;
+  height: 70%;
+  background-color: var(--gridBgColor);
+}
+
+.display {
+ position: absolute;
+ bottom: 50px;
+ text-align: center;
+}
+.displayWinner {
+  font-size: 2rem;
+}
+button {
+  width: 100px;
+  height: 30px;
+  background-color: var(--gridBgColor);
+  border: 2px solid var(--borderColor);
+  color: var(--crossColor);
 }
